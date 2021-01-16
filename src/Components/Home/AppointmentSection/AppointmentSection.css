@@ -1,0 +1,15 @@
+.my-appointment{
+ height: 350px;
+ background-color:#3A4256 ;
+ width: 100%;
+ }
+ .cus_img{
+  position: relative;
+  
+ }
+ .cus_img img{
+  position: absolute;
+  top:-120px;
+  height: 470px;
+
+ }

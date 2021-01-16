@@ -1,0 +1,17 @@
+.home_container{
+ background-image: url('../../../src/images/chairBg.png');
+ background-size:80% 85%;
+ height:600px;
+ position: relative;
+}
+.home_container::after{
+ position: absolute;
+ content: '';
+ height: 550px;
+ width: 400px;
+ right: 0;
+ top:0;
+ background-color:#3A4256 ;
+ z-index: -50;
+
+}
