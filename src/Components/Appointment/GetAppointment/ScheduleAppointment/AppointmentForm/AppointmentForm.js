@@ -1,8 +1,9 @@
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import Modal from 'react-modal';
+import { UserContext } from '../../../../../App';
  
 const customStyles = {
   content : {
@@ -26,6 +27,7 @@ function AppointmentForm({open, close,subject,formInfo,date,notify}){
 // console.log(date.toDateString())
 // console.log(formInfo.sub)
 // console.log(new Date().toDateString())
+const [user, setUser ]=useContext(UserContext)
 
   const { register, handleSubmit, watch, errors } = useForm();
 
@@ -101,7 +103,7 @@ function AppointmentForm({open, close,subject,formInfo,date,notify}){
          
           <div className="form-group">
             
-            <input name="yourname" type="text" className="form-control" placeholder="Your Name" ref={register({ required: true })}/>
+            <input name="yourname" value={user.name} type="text" className="form-control" placeholder="Your Name" ref={register({ required: true })}/>
             {errors.yourname && <span style={{color:'red'}}>This field is required</span>}
             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
@@ -114,7 +116,7 @@ function AppointmentForm({open, close,subject,formInfo,date,notify}){
 
           <div className="form-group">
             
-            <input name="email" type="email" className="form-control" placeholder="Your email" ref={register({ required: true })}/>
+            <input name="email" type="email" className="form-control" placeholder="Your email" value={user.email} ref={register({ required: true })}/>
             {errors.email && <span style={{color:'red'}}>This field is required</span>}
           </div>
 

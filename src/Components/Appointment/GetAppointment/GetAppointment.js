@@ -5,6 +5,7 @@ import chair from '../../../images/chair.png'
 import { UserContext } from '../../../App';
 
 const GetAppointment = ({handleDate}) => {
+ 
 
  // const [selectDate,setSelectDate]=useState(new Date())
  // // const [selectDate,setSelectDate]=useContext(UserContext)

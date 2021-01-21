@@ -25,17 +25,17 @@ function App() {
 
   // const [selectDate,setSelectDate ] = useState(new Date())
   const [user, setUser ] = useState({})
+  
   const [signIn, setSignIn]=useState({})
+  
 
   return (
     <UserContext.Provider
-      value={[
-        // selectDate,
-        // setSelectDate,
+      value={[                
         user,
-        setUser,
+        setUser,  
         signIn, 
-        setSignIn   
+        setSignIn
         ]}
     >
 

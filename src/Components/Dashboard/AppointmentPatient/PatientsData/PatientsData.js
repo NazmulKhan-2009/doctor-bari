@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../../App';
 
 const PatientsData = () => {
 
   const [patient, setPatient]=useState([])
 console.log(patient)
+
 
   
 useEffect(()=>{

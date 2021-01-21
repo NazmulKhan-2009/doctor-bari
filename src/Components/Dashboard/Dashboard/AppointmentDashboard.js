@@ -10,6 +10,7 @@ const AppointmentDashboard = () => {
 
   const [user, setUser ]=useContext(UserContext)
   const [selectDate, setSelectDate]=useState(new Date())
+  const [appointments, setAppointments]=useState([])
 
   console.log(`${user.email} & ${selectDate.toDateString()}`)
 
@@ -26,10 +27,9 @@ const AppointmentDashboard = () => {
       headers:{"content-type":"application/json"},
       body:JSON.stringify(userInfo)
 
-    }).then(res=>{
+    }).then(res=>
       res.json()
-    }).then(result=>console.log(result))
-
+    ).then(result=>setAppointments(result))
 
   }, [selectDate])
 
@@ -62,11 +62,13 @@ const AppointmentDashboard = () => {
             <Col md={5}>
               <div className="d-flex justify-content-between">              
                   <h5>Appointment</h5>         
-                  <p>07-12-2020</p>             
+                  <p>{selectDate.toDateString()}</p>             
               </div> 
 
               <div>
-                <AppointmentByDate />
+                <AppointmentByDate 
+                  appointments={appointments}
+                />
                   
               </div>
            </Col>

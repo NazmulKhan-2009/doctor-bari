@@ -1,15 +1,22 @@
 import { faCalendar, faCog, faFileAlt, faGripHorizontal, faHome, faHospitalUser, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import './Sidebar.css';
 import {handleSignOut, userSignOut} from '../../Authentication/LoginManager'
 
 const Sidebar = () => {
+ 
+ const [user,signIn, setSignIn]= useContext(UserContext)
+ const[isDoctor,setIsDoctor]=useState(false)
+ const[doctor,setDoctor]=useState([])
 
- const [signIn, setSignIn]= useContext(UserContext)
+ const isDoctors=doctor.find(matchDoctor=>user.email===matchDoctor.email)
+// console.log(isDoctors.email)
 
+console.log(user.email)
+console.log(isDoctors)
  // const handlesignOut=()=>{
  //  handleSignOut().then(res=>setUser(res))
   
@@ -18,6 +25,20 @@ const Sidebar = () => {
  const handleLogOut=()=>{
   userSignOut().then(res=>setSignIn(res))
  }
+
+ useEffect(()=>{
+  // fetch("http://localhost:8000/isdoctor",{
+  //  method:"POST",
+  //  headers:{"content-type":"application/json"},
+  //  body: JSON.stringify({email:user.email})
+  // }).then(res => res.json()).then(result=>setIsDoctor(result))
+  
+  fetch("http://localhost:8000/doctorlist")
+  .then(res=>res.json()).then(result=>setDoctor(result))
+
+ },[])
+  
+ 
  
 
  return (
@@ -34,7 +55,8 @@ const Sidebar = () => {
       <FontAwesomeIcon icon={faGripHorizontal}/> <span>Dashboard</span>
      </Link>
     </li> 
-
+{isDoctors && 
+<>
     <li>
      <Link to="/AppointmentDashboard" className="text-decoration-none">
       <FontAwesomeIcon icon={faCalendar}/> <span>Appointment</span>
@@ -63,7 +85,9 @@ const Sidebar = () => {
      <Link to="/setting" className="text-decoration-none">
       <FontAwesomeIcon icon={faCog}/> <span>Setting</span>
      </Link>
-    </li>    
+    </li>  
+</>
+}  
    </ul>
 
   

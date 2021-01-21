@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AppointmentByDate = () => {
+const AppointmentByDate = ({appointments}) => {
  return (
   <div>
    <table class="table table-borderless">
@@ -13,12 +13,15 @@ const AppointmentByDate = () => {
        </tr>
      </thead>
      <tbody>
-       <tr>
+     {appointments.map(info=>
+      <tr>
          
-         <td>Mark</td>
-         <td>Otto</td>
-         <td>@mdo</td>
+         <td>{info.yourname}</td>
+         <td>{info.phone}</td>
+         <td>{info.email}</td>
        </tr>
+     )}
+       
        
      </tbody>
    </table>
